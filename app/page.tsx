@@ -62,8 +62,8 @@ export default function Home() {
       'activision',   
     ],
     releaseDate: [
-      '2010-01-01,2018-12-31',
-      
+      '2015-01-01,2019-12-31',
+      '2010-01-01,2014-12-31',
 
     ],
     oneWordTitle: [
