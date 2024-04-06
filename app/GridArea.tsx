@@ -44,6 +44,7 @@ const GridArea: React.FC<GridAreaProps> = ({ topCategories, platforms, randomize
   const [currentCategory, setCurrentCategory] = useState('');
   const [currentSquare, setCurrentSquare] = useState(0);
   const [currentGame, setCurrentGame] = useState('');
+  const [alreadyGuessed, setAlreadyGuessed] = useState<string[]>([]);
 
   const checkValid = (game: any) => {
     let correct = false;
@@ -100,6 +101,7 @@ const GridArea: React.FC<GridAreaProps> = ({ topCategories, platforms, randomize
           case 9: setBackgroundImage9(gameData.background_image); break;
         }
         setGuessesCorrect(guessesCorrect + 1);
+        allGames.splice(allGames.indexOf(gameData), 1);
       }
     } else {
       console.log('platform Incorrect');

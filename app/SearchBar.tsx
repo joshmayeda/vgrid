@@ -14,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ allGames, currentGame, setCurrent
     query === ''
       ? allGames
       : allGames.filter((game) => {
-            return game && game.name && game.name.toLowerCase().includes(query.toLowerCase())
+            return game && game.name && game.name.toLowerCase().match(query.toLowerCase())
         })
 
   if (!allGames.length) {
