@@ -98,7 +98,6 @@ export default function Home() {
     let randomIndex = Math.floor(Math.random() * 2);
     for(let i = 0; i < 2; i++) {
       let key = Object.keys(topCategoriesCore)[randomIndex];
-      //TODO: Fix error that occurs here sometimes VVV (TypeError: Cannot read properties of undefined (reading 'length')) when reloading page sometimes?
       let value = topCategoriesCore[key][Math.floor(Math.random() * topCategoriesCore[key].length)];
       random.push(`${key}: ${value}`);
     
@@ -109,7 +108,7 @@ export default function Home() {
       randomIndex = temp;
     }
     random.push(topCategoriesWild[Math.floor(Math.random() * topCategoriesWild.length)]);
-    console.log("top: " + random);
+    //console.log("top: " + random);
     setTopCategories(random);
   }
 

@@ -14,7 +14,7 @@ async function fetchData() {
       "sort": {
         "name": 1
       },
-      "limit": 3000
+      "limit": 10
   });
 
   var config = {
