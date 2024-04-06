@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import fetchData from './api/data'
 import removeDuplicates from './api/data1';
 import StartModal from './StartModal'
+import EndModal from './EndModal'
 //import getGames from './api/test';
 
 export default function Home() {
@@ -92,6 +93,9 @@ export default function Home() {
   const [topCategories, setTopCategories] = useState<string[]>([]);
   const [allGames, setAllGames] = useState<any[]>([]);
   const [startModalIsOpen, setStartModalIsOpen] = useState<boolean>(true);
+  const [endModalIsOpen, setEndModalIsOpen] = useState<boolean>(false);
+  const [guessesLeft, setGuessesLeft] = useState<number>(9);
+  const [guessesCorrect, setGuessesCorrect] = useState<number>(0);
 
   const randomizeTopCategories = () => {
     let random: string[] = [];
@@ -149,11 +153,22 @@ export default function Home() {
   return (
     <main className="flex flex-col justify-between min-h-screen bg-red-100">
       <Navbar />
-      <GridArea topCategories={topCategories} randomizeTopCategories={randomizeTopCategories} platforms={platforms} allGames={allGames} />
+      <GridArea
+        topCategories={topCategories}
+        randomizeTopCategories={randomizeTopCategories}
+        platforms={platforms}
+        allGames={allGames}
+        setEndModalIsOpen={setEndModalIsOpen}
+        guessesLeft={guessesLeft}
+        setGuessesLeft={setGuessesLeft}
+        guessesCorrect={guessesCorrect}
+        setGuessesCorrect={setGuessesCorrect}
+      />
       <div className="flex justify-center mb-5">
-        Created by Josh Mayeda
+        Guesses Left: {guessesLeft}
       </div>
       { startModalIsOpen ? <StartModal startModalIsOpen={startModalIsOpen} setStartModalIsOpen={setStartModalIsOpen} /> : null }
+      { endModalIsOpen ? <EndModal endModalIsOpen={endModalIsOpen} setEndModalIsOpen={setEndModalIsOpen} guessesCorrect={guessesCorrect} /> : null }
     </main>
   )
 }

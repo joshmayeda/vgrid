@@ -8,10 +8,15 @@ interface GridAreaProps {
   randomizeTopCategories: () => void;
   platforms: string[];
   allGames: any[];
+  setEndModalIsOpen: (isOpen: boolean) => void;
+  guessesLeft: number;
+  setGuessesLeft: (guesses: number) => void;
+  guessesCorrect: number;
+  setGuessesCorrect: (guesses: number) => void;
 }
 //TODO: Add check to see if puzzle is even possible
 
-const GridArea: React.FC<GridAreaProps> = ({ topCategories, platforms, randomizeTopCategories, allGames }) => {
+const GridArea: React.FC<GridAreaProps> = ({ topCategories, platforms, randomizeTopCategories, allGames, setEndModalIsOpen, guessesLeft, setGuessesLeft, guessesCorrect, setGuessesCorrect }) => {
 
   const [backgroundColor1, setBackgroundColor1] = useState(false);
   const [backgroundColor2, setBackgroundColor2] = useState(false);
@@ -94,9 +99,14 @@ const GridArea: React.FC<GridAreaProps> = ({ topCategories, platforms, randomize
           case 8: setBackgroundImage8(gameData.background_image); break;
           case 9: setBackgroundImage9(gameData.background_image); break;
         }
+        setGuessesCorrect(guessesCorrect + 1);
       }
     } else {
       console.log('platform Incorrect');
+    }
+    setGuessesLeft(guessesLeft - 1);
+    if(guessesLeft === 1) {
+      setEndModalIsOpen(true);
     }
   };
 
