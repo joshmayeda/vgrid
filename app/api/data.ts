@@ -2,7 +2,7 @@
 import { MongoClient } from 'mongodb'
 var axios = require('axios');
 
-async function fetchData() {
+async function fetchData(page: number, pageSize: number) {
 
   var data = JSON.stringify({
       "collection": "AllGames",
@@ -14,7 +14,8 @@ async function fetchData() {
       "sort": {
         "name": 1
       },
-      "limit": 3000
+      "skip": (page) * pageSize,
+      "limit": pageSize
   });
 
   var config = {

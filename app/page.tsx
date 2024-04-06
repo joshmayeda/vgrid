@@ -127,11 +127,23 @@ export default function Home() {
   useEffect(() => {
     randomizePlatforms();
     randomizeTopCategories();
-    fetchData().then(data => {
-      const games = data;
+    Promise.all([
+      fetchData(0, 1000),
+      fetchData(1, 1000),
+      fetchData(2, 1000)
+    ]).then((pages) => {
+      const games = pages.flat();
       setAllGames(games);
-      console.log(games);
+      console.log('games:', games);
+    }).catch((error) => {
+      console.error('Error fetching data:', error);
     });
+    // for(let i = 1; i < 4; i++) {
+    //   fetchData(i, 1000).then(data => {
+    //     const games = allGames.concat(data);
+    //     setAllGames(games);
+    //   });
+    // }
   }, []);
 
   return (
