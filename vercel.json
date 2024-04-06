@@ -1,0 +1,11 @@
+{
+    "version": 1.0,
+    "name": "VGrid",
+    "builds": [
+      { "src": "package.json", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "/index.html" }
+    ],
+    "functions": { "api/*.js": { "maxDuration": 60 } }
+  }
