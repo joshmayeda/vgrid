@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "VGrid",
+    "name": "test",
     "builds": [
       { "src": "package.json", "use": "@vercel/node" }
     ],
